@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#070b1b" />
+  <title>Vivek Dehariya — Software Engineer</title>
+  <meta name="description" content="Portfolio of Vivek Dehariya, a software engineer building modern web experiences." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    :root {
+      --bg: #070b1b;
+      --bg2: #0c1230;
+      --surface: rgba(17, 25, 58, .66);
+      --surface-solid: #121a3c;
+      --line: rgba(173, 195, 255, .14);
+      --text: #f5f7ff;
+      --muted: #9ca8cf;
+      --cyan: #42ddff;
+      --violet: #906bff;
+      --pink: #ff68ca;
+      --lime: #b8ff69;
+      --mono: "DM Mono", monospace;
+      --sans: "Manrope", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; color: var(--text); background: var(--bg); font-family: var(--sans);
+      overflow-x: hidden; line-height: 1.55;
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0; pointer-events: none; z-index: -3;
+      background: linear-gradient(rgba(7,11,27,.72),rgba(7,11,27,.93)),
+        radial-gradient(circle at 16% 0%, #192e67 0, transparent 32%),
+        radial-gradient(circle at 90% 30%, #29185d 0, transparent 30%);
+    }
+    .grid-bg {
+      position: fixed; inset: 0; pointer-events: none; z-index: -2; opacity: .28;
+      background-image: linear-gradient(rgba(116,151,255,.11) 1px,transparent 1px),linear-gradient(90deg,rgba(116,151,255,.11) 1px,transparent 1px);
+      background-size: 56px 56px; mask-image: linear-gradient(to bottom,black,transparent 75%);
+    }
+    .cursor-glow { width: 430px; height: 430px; position: fixed; top: -215px; left: -215px; z-index: -1; pointer-events:none; border-radius: 50%; background: radial-gradient(circle,rgba(60,221,255,.10),transparent 65%); transition: transform .1s linear; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    .container { width: min(1160px, calc(100% - 48px)); margin: auto; }
+    .eyebrow { color: var(--cyan); font: 500 .73rem var(--mono); letter-spacing: .11em; text-transform: uppercase; display: flex; gap: 9px; align-items:center; }
+    .eyebrow::before { content:""; width: 24px; height: 1px; background: currentColor; }
+    .section { padding: 116px 0; position: relative; }
+    .section-heading { max-width: 670px; margin-bottom: 52px; }
+    .section-heading h2 { font-size: clamp(2rem,4.2vw,3.45rem); letter-spacing:-.065em; line-height:1.08; margin:14px 0 16px; }
+    .section-heading p { color:var(--muted); margin:0; max-width: 580px; }
+
+    nav { height: 78px; display:flex; align-items:center; justify-content:space-between; position:relative; z-index:30; }
+    .logo { font: 700 1.08rem var(--mono); letter-spacing:-.08em; color:white; }
+    .logo span { color:var(--cyan); }
+    .nav-links { display:flex; gap: 29px; align-items:center; color:#bec8eb; font-size:.83rem; font-weight:700; }
+    .nav-links a { transition: color .2s; } .nav-links a:hover { color:var(--cyan); }
+    .nav-cta { border:1px solid rgba(66,221,255,.42); padding:9px 15px; border-radius:7px; color:var(--cyan)!important; }
+    .menu-btn { display:none; border:0; background:transparent; color:white; cursor:pointer; }
+    .hero { min-height: calc(100vh - 78px); display:grid; grid-template-columns: 1.2fr .8fr; align-items:center; padding: 55px 0 80px; gap: 36px; }
+    .hero-copy { position:relative; z-index:2; }
+    .availability { display:inline-flex; align-items:center; gap:9px; color:#baf78a; background:rgba(141,255,94,.08); border:1px solid rgba(184,255,105,.18); border-radius:40px; padding:7px 12px; font: .7rem var(--mono); }
+    .ping { width:7px; height:7px; background:var(--lime); border-radius:50%; box-shadow: 0 0 0 0 rgba(184,255,105,.6); animation:ping 1.8s infinite; }
+    @keyframes ping { 70%{box-shadow:0 0 0 8px rgba(184,255,105,0)} 100%{box-shadow:0 0 0 0 rgba(184,255,105,0)} }
+    h1 { font-size:clamp(3rem,7.1vw,6.3rem); line-height:.94; letter-spacing:-.085em; margin:22px 0 23px; max-width:780px; }
+    .gradient { background:linear-gradient(105deg,var(--cyan),#9e91ff 48%,var(--pink)); background-clip:text; -webkit-background-clip:text; color:transparent; }
+    .hero p { max-width:600px; color:var(--muted); font-size:1.08rem; line-height:1.75; }
+    .hero-actions { display:flex; gap:13px; flex-wrap:wrap; margin-top:32px; }
+    .btn { display:inline-flex; align-items:center; gap:9px; padding:13px 19px; border-radius:7px; cursor:pointer; font-weight:800; font-size:.84rem; transition:transform .22s,box-shadow .22s,background .22s; border:1px solid transparent; }
+    .btn:hover { transform: translateY(-3px); }
+    .btn-primary { background:var(--cyan); color:#061021; box-shadow:0 8px 28px rgba(66,221,255,.2); }
+    .btn-primary:hover { box-shadow:0 12px 35px rgba(66,221,255,.35); }
+    .btn-outline { border-color:var(--line); background:rgba(255,255,255,.025); color:white; }
+    .btn-outline:hover { border-color:rgba(66,221,255,.55); background:rgba(66,221,255,.07); }
+    .hero-meta { display:flex; gap:29px; margin-top:55px; }
+    .hero-meta div { font: .68rem var(--mono); color:#8490bd; }
+    .hero-meta strong { color:#dce4ff; font:700 .83rem var(--sans); display:block; margin-top:3px; }
+    .visual { position:relative; min-height:495px; display:flex; align-items:center; justify-content:center; }
+    .orb { width:360px; height:360px; border-radius:50%; background:radial-gradient(circle at 32% 26%,rgba(86,238,255,.9),rgba(89,79,255,.58) 29%,rgba(42,20,103,.14) 68%,transparent 70%); filter:blur(.2px); opacity:.8; animation:float 6s ease-in-out infinite; }
+    @keyframes float { 50% { transform:translateY(-18px) rotate(4deg); } }
+    .code-card { position:absolute; width:min(370px,94%); background:rgba(8,14,40,.76); border:1px solid rgba(173,195,255,.22); box-shadow:0 25px 70px rgba(0,0,0,.38); backdrop-filter:blur(15px); border-radius:11px; overflow:hidden; animation:cardFloat 5s ease-in-out infinite; }
+    @keyframes cardFloat { 50%{transform:translateY(10px)} }
+    .card-top { height:40px; display:flex; align-items:center; gap:6px; padding:0 14px; border-bottom:1px solid var(--line); font: .65rem var(--mono); color:#aeb9e0; }
+    .dot { width:8px;height:8px;border-radius:50%; } .red{background:#ff6681}.yellow{background:#ffcb6b}.green{background:#6fe29b}
+    .file { margin-left:8px; color:#6978a8; }
+    pre { margin:0; padding:20px; font: .71rem/1.8 var(--mono); color:#ccd5fb; overflow:hidden; }
+    .purple{color:#ca9cff}.blue{color:#61e4ff}.green-t{color:#9df2a3}.orange{color:#ffbd7b}.fade{color:#7181af}
+    .badge { position:absolute; display:flex; align-items:center; gap:9px; background:#121a3e; border:1px solid var(--line); box-shadow:0 12px 35px rgba(0,0,0,.26); border-radius:8px; padding:10px 12px; font-size:.7rem; font-weight:800; animation:float 4.5s ease-in-out infinite reverse; }
+    .badge.one { top:31px; right:-5px; } .badge.two { bottom:37px; left:-12px; }
+    .badge i { width:17px;height:17px; color:var(--cyan); }
+    .stats { border-top:1px solid var(--line); border-bottom:1px solid var(--line); display:grid; grid-template-columns:repeat(4,1fr); }
+    .stat { padding:29px 24px; border-right:1px solid var(--line); }
+    .stat:last-child {border:0}.stat b {font-size:1.8rem;letter-spacing:-.06em;display:block}.stat span{font:.68rem var(--mono);color:var(--muted);text-transform:uppercase}
+    .skill-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+    .skill-card { padding:26px; min-height:210px; border:1px solid var(--line); border-radius:10px; background:linear-gradient(140deg,rgba(32,44,95,.42),rgba(12,18,47,.24)); transition:transform .28s,border-color .28s,background .28s; }
+    .skill-card:hover { transform:translateY(-7px); border-color:rgba(66,221,255,.47); background:rgba(28,45,95,.5); }
+    .icon-box { width:39px;height:39px;display:grid;place-items:center;color:var(--cyan); background:rgba(66,221,255,.1);border-radius:8px; }
+    .icon-box i{width:19px}.skill-card h3{margin:18px 0 9px;font-size:1rem}.skill-card p{margin:0;color:var(--muted);font-size:.79rem;line-height:1.7}
+    .projects { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+    .project { border:1px solid var(--line); background:rgba(15,23,55,.55); border-radius:12px; overflow:hidden; transition:transform .3s,border-color .3s; }
+    .project:hover { transform:translateY(-7px); border-color:rgba(144,107,255,.7); }
+    .project-visual { height:200px; padding:22px; position:relative; overflow:hidden; background:linear-gradient(135deg,#173b5c,#121143 72%); }
+    .project:nth-child(2) .project-visual { background:linear-gradient(135deg,#371a5b,#101e51 72%); }
+    .project-visual::after {content:""; position:absolute; width:220px;height:220px;border-radius:50%;background:rgba(70,227,255,.25);filter:blur(28px);right:-70px;bottom:-110px}
+    .mini-window { position:relative; z-index:1; border:1px solid rgba(255,255,255,.19); border-radius:7px; background:rgba(5,10,31,.69); overflow:hidden; height:150px; transform:rotate(-3deg) translateY(10px); box-shadow:0 12px 25px rgba(0,0,0,.25); }
+    .mini-bar {height:24px;border-bottom:1px solid rgba(255,255,255,.12);padding:8px 10px;display:flex;gap:4px}.mini-bar span{width:5px;height:5px;border-radius:50%;background:#6c78a4}
+    .mini-body {display:grid;grid-template-columns:70px 1fr;height:125px}.side{border-right:1px solid rgba(255,255,255,.1);padding:12px 7px}.line{height:4px;border-radius:4px;background:#354576;margin-bottom:7px}.code-lines{padding:14px}.code-lines .line:nth-child(1){width:65%;background:#b27dff}.code-lines .line:nth-child(2){width:78%;background:#5ce9fa}.code-lines .line:nth-child(3){width:43%;margin-left:12px;background:#7fe48d}.code-lines .line:nth-child(4){width:85%}.code-lines .line:nth-child(5){width:54%;margin-left:12px;background:#ffba77}
+    .project-info { padding:25px; }.project-top{display:flex;justify-content:space-between;gap:15px;align-items:center}.project-info h3{margin:0;font-size:1.25rem;letter-spacing:-.04em}.project-info p{color:var(--muted);font-size:.82rem;line-height:1.7;margin:11px 0 17px}.tags{display:flex;flex-wrap:wrap;gap:6px}.tag{font:.62rem var(--mono);color:#aebce9;background:rgba(132,150,223,.1);padding:5px 7px;border-radius:4px}.project-link{color:var(--cyan);cursor:pointer;background:transparent;border:0;padding:4px;display:flex}.project-link:hover{color:white}
+    .experience { border-left:1px solid rgba(66,221,255,.35); margin-left:10px; }
+    .job { position:relative; padding:0 0 48px 36px; }.job:last-child{padding-bottom:0}.job::before {content:"";position:absolute;left:-6px;top:5px;width:11px;height:11px;background:var(--bg);border:2px solid var(--cyan);border-radius:50%}.job-date{font:.68rem var(--mono);color:var(--cyan);letter-spacing:.04em}.job h3{font-size:1.2rem;margin:8px 0 2px}.job h3 span{color:#8390bb;font-weight:500;font-size:.9rem}.job p{color:var(--muted);font-size:.86rem;max-width:720px;margin:11px 0 0}
+    .contact-box { background:linear-gradient(110deg,rgba(40,55,129,.55),rgba(52,25,112,.47)); border:1px solid rgba(132,160,255,.24); border-radius:15px; padding:clamp(34px,6vw,72px); text-align:center; overflow:hidden; position:relative; }
+    .contact-box::before {content:"";position:absolute;width:450px;height:450px;left:50%;top:-380px;transform:translateX(-50%);background:rgba(66,221,255,.2);filter:blur(70px);border-radius:50%}
+    .contact-box>*{position:relative}.contact-box h2{font-size:clamp(2.1rem,5vw,4rem);letter-spacing:-.07em;line-height:1;margin:14px auto;max-width:700px}.contact-box p{color:#b7c2eb;max-width:540px;margin:0 auto 27px}.contact-buttons{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+    footer {padding:27px 0;border-top:1px solid var(--line);color:#8290b9;font:.69rem var(--mono)}.footer-inner{display:flex;justify-content:space-between;gap:15px}.socials{display:flex;gap:15px}.socials a:hover{color:var(--cyan)}
+    .reveal { opacity:0; transform:translateY(24px); transition: opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1); }.reveal.visible{opacity:1;transform:none}
+    .modal {position:fixed;inset:0;background:rgba(2,5,16,.78);backdrop-filter:blur(8px);z-index:100;display:grid;place-items:center;padding:20px;opacity:0;visibility:hidden;transition:.2s}.modal.open{opacity:1;visibility:visible}.modal-content{width:min(540px,100%);background:#121a3c;border:1px solid var(--line);border-radius:12px;padding:30px;position:relative;transform:translateY(15px);transition:.25s}.modal.open .modal-content{transform:none}.close{position:absolute;right:15px;top:15px;border:0;background:transparent;color:#b7c2e7;cursor:pointer}.modal h2{margin:0 0 9px}.modal p{color:var(--muted);font-size:.9rem}.modal ul{padding-left:19px;color:#c7d0ec;font-size:.84rem;line-height:1.8}.modal .tags{margin:19px 0}
+    @media(max-width:760px){
+      .container{width:min(100% - 34px,1160px)} nav{height:68px}.menu-btn{display:block}.nav-links{position:absolute;display:none;top:61px;left:0;right:0;background:#101735;border:1px solid var(--line);border-radius:9px;padding:18px;flex-direction:column;align-items:stretch;gap:16px}.nav-links.open{display:flex}.nav-cta{text-align:center}
+      .hero{grid-template-columns:1fr;padding:54px 0 55px;min-height:auto}.visual{min-height:360px;order:-1}.orb{width:275px;height:275px}.code-card{width:330px}.badge.one{right:-5px}.hero h1{font-size:clamp(3rem,13vw,4.6rem)}.hero-meta{margin-top:35px;gap:18px}.hero-meta div{font-size:.6rem}
+      .stats{grid-template-columns:1fr 1fr}.stat{padding:20px 14px}.stat:nth-child(2){border-right:0}.stat:nth-child(-n+2){border-bottom:1px solid var(--line)}.skill-grid,.projects{grid-template-columns:1fr}.section{padding:78px 0}.project-visual{height:180px}.footer-inner{flex-direction:column}.contact-box{padding:42px 20px}
+    }
+  </style>
+</head>
+<body>
+  <div class="grid-bg"></div><div class="cursor-glow" id="glow"></div>
+  <header class="container">
+    <nav>
+      <a href="#home" class="logo">vivek<span>.</span>dev</a>
+      <button class="menu-btn" id="menuButton" aria-label="Open navigation"><i data-lucide="menu"></i></button>
+      <div class="nav-links" id="navLinks">
+        <a href="#about">About</a><a href="#skills">Expertise</a><a href="#work">Work</a><a href="#experience">Experience</a>
+        <a href="#contact" class="nav-cta">Let's talk <span>↗</span></a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="container hero" id="home">
+      <div class="hero-copy reveal">
+        <div class="availability"><span class="ping"></span> Available for opportunities</div>
+        <h1>Engineering ideas into <span class="gradient">impactful</span> digital products.</h1>
+        <p>I'm <strong style="color:#e9edff">Vivek Dehariya</strong>, a software engineer focused on crafting scalable, intuitive web applications — from real-time collaborative tools to AI-powered automation.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#work">Explore my work <i data-lucide="arrow-down-right" size="17"></i></a>
+          <a class="btn btn-outline" href="mailto:vivekdehariya298@gmail.com"><i data-lucide="mail" size="16"></i> Get in touch</a>
+        </div>
+        <div class="hero-meta">
+          <div>BASED IN<strong>Chhindwara, India</strong></div>
+          <div>FOCUS<strong>Full-stack & AI</strong></div>
+          <div>STUDYING AT<strong>JEC, Jabalpur</strong></div>
+        </div>
+      </div>
+      <div class="visual reveal">
+        <div class="orb"></div>
+        <div class="code-card">
+          <div class="card-top"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="file">vivek.tsx</span></div>
+<pre><span class="purple">const</span> <span class="blue">engineer</span> = {
+  name: <span class="green-t">"Vivek Dehariya"</span>,
+  role: <span class="green-t">"Software Engineer"</span>,
+  stack: [<span class="green-t">"Next.js"</span>, <span class="green-t">"Node.js"</span>,
+          <span class="green-t">"TypeScript"</span>],
+  passion: <span class="orange">"building the future"</span>
+};
+
+<span class="purple">export default</span> engineer;</pre>
+        </div>
+        <div class="badge one"><i data-lucide="sparkles"></i> AI & Automation</div>
+        <div class="badge two"><i data-lucide="layers-3"></i> Full-stack Builder</div>
+      </div>
+    </section>
+
+    <section class="container stats reveal" id="about">
+      <div class="stat"><b>2+</b><span>Production Projects</span></div>
+      <div class="stat"><b>6+</b><span>Core Technologies</span></div>
+      <div class="stat"><b>1200</b><span>Chess.com Rating</span></div>
+      <div class="stat"><b>2026</b><span>B.Tech Graduate</span></div>
+    </section>
+
+    <section class="container section" id="skills">
+      <div class="section-heading reveal">
+        <span class="eyebrow">Technical expertise</span>
+        <h2>Tools to build the <span class="gradient">exceptional.</span></h2>
+        <p>A modern, end-to-end engineering toolkit shaped by a love for clean architecture, seamless experiences, and robust problem solving.</p>
+      </div>
+      <div class="skill-grid">
+        <article class="skill-card reveal"><div class="icon-box"><i data-lucide="monitor-code"></i></div><h3>Frontend Engineering</h3><p>Next.js, React.js, TypeScript, Redux, React Query, Tailwind CSS, Ant Design, PWA & Webpack.</p></article>
+        <article class="skill-card reveal"><div class="icon-box"><i data-lucide="server-cog"></i></div><h3>Backend Systems</h3><p>Node.js, Express.js, REST APIs, JWT Authentication and thoughtful microservices architecture.</p></article>
+        <article class="skill-card reveal"><div class="icon-box"><i data-lucide="database"></i></div><h3>Data & Cloud</h3><p>MongoDB, Mongoose ODM, Firebase Firestore, Realtime Database, Docker and Vercel.</p></article>
+        <article class="skill-card reveal"><div class="icon-box"><i data-lucide="brain-circuit"></i></div><h3>AI Integration</h3><p>AI workflow design, Llama 3 via Groq, intelligent job matching, research agents and automation pipelines.</p></article>
+        <article class="skill-card reveal"><div class="icon-box"><i data-lucide="git-branch"></i></div><h3>Developer Workflow</h3><p>Git, GitHub, Postman, VS Code, npm, Chrome DevTools and an iterative, product-minded process.</p></article>
+        <article class="skill-card reveal"><div class="icon-box"><i data-lucide="code-2"></i></div><h3>Core Foundations</h3><p>Strong foundations in C, C++, Java, JavaScript, data structures, algorithms, DBMS and system design.</p></article>
+      </div>
+    </section>
+
+    <section class="container section" id="work">
+      <div class="section-heading reveal">
+        <span class="eyebrow">Selected work</span>
+        <h2>Solving real problems with <span class="gradient">good code.</span></h2>
+        <p>Projects that pair technical depth with practical, human-centered outcomes.</p>
+      </div>
+      <div class="projects">
+        <article class="project reveal">
+          <div class="project-visual"><div class="mini-window"><div class="mini-bar"><span></span><span></span><span></span></div><div class="mini-body"><div class="side"><div class="line"></div><div class="line"></div><div class="line"></div></div><div class="code-lines"><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div></div></div></div></div>
+          <div class="project-info"><div class="project-top"><h3>AutoApply AI</h3><button class="project-link details-btn" data-project="auto" aria-label="View AutoApply AI details"><i data-lucide="arrow-up-right"></i></button></div><p>An AI job application assistant that turns job research and tailored applications into one intelligent workflow.</p><div class="tags"><span class="tag">Next.js</span><span class="tag">Express.js</span><span class="tag">MongoDB</span><span class="tag">Llama 3</span></div></div>
+        </article>
+        <article class="project reveal">
+          <div class="project-visual"><div class="mini-window"><div class="mini-bar"><span></span><span></span><span></span></div><div class="mini-body"><div class="side"><div class="line"></div><div class="line"></div><div class="line"></div></div><div class="code-lines"><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div></div></div></div></div>
+          <div class="project-info"><div class="project-top"><h3>Collaborative Code Editor</h3><button class="project-link details-btn" data-project="editor" aria-label="View Code Editor details"><i data-lucide="arrow-up-right"></i></button></div><p>A multi-user coding environment with conflict-free editing, presence awareness, and secure code execution.</p><div class="tags"><span class="tag">TypeScript</span><span class="tag">Socket.io</span><span class="tag">Docker</span><span class="tag">Monaco</span></div></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="container section" id="experience">
+      <div class="section-heading reveal"><span class="eyebrow">Journey so far</span><h2>Built through ownership & <span class="gradient">curiosity.</span></h2></div>
+      <div class="experience reveal">
+        <article class="job"><div class="job-date">MAY 2025 — JUN 2025</div><h3>Backend Developer Intern <span>· Skystar Software, Remote</span></h3><p>Developed and maintained RESTful APIs in Node.js and Express.js, implemented validated MongoDB CRUD workflows, and collaborated closely with frontend engineers on consistent API contracts.</p></article>
+        <article class="job"><div class="job-date">2025 — PRESENT</div><h3>Minor Project Lead <span>· Jabalpur Engineering College</span></h3><p>Leading a 4-member cross-functional team through planning, sprint coordination and delivery. Presented major project work to an audience of 100+ students and professors.</p></article>
+        <article class="job"><div class="job-date">EXPECTED JULY 2026</div><h3>B.Tech, Information Technology <span>· Jabalpur Engineering College</span></h3><p>Relevant focus: Data Structures & Algorithms, DBMS, Operating Systems, Computer Networks and Object-Oriented Programming.</p></article>
+      </div>
+    </section>
+
+    <section class="container section" id="contact">
+      <div class="contact-box reveal">
+        <span class="eyebrow" style="justify-content:center;color:#b8ff69">Have a great idea?</span>
+        <h2>Let's create something <span class="gradient">remarkable.</span></h2>
+        <p>I'm actively looking for opportunities to learn, contribute, and build meaningful products with ambitious teams.</p>
+        <div class="contact-buttons">
+          <a class="btn btn-primary" href="mailto:vivekdehariya298@gmail.com"><i data-lucide="send" size="16"></i> vivekdehariya298@gmail.com</a>
+          <a class="btn btn-outline" href="tel:+917489549709"><i data-lucide="phone" size="16"></i> +91 74895 49709</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="container footer-inner"><span>© <span id="year"></span> VIVEK DEHARIYA · DESIGNED & BUILT WITH CARE</span><div class="socials"><a href="https://github.com/" target="_blank" rel="noopener">GitHub ↗</a><a href="mailto:vivekdehariya298@gmail.com">Email ↗</a><a href="#home">Back to top ↑</a></div></div></footer>
+
+  <div class="modal" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-content">
+      <button class="close" id="closeModal" aria-label="Close modal"><i data-lucide="x"></i></button>
+      <span class="eyebrow">Project spotlight</span><h2 id="modalTitle"></h2><p id="modalDescription"></p><ul id="modalList"></ul><div class="tags" id="modalTags"></div>
+    </div>
+  </div>
+
+  <script>
+    lucide.createIcons();
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const menu = document.getElementById('menuButton'), links = document.getElementById('navLinks');
+    menu.addEventListener('click', () => { links.classList.toggle('open'); menu.setAttribute('aria-label', links.classList.contains('open') ? 'Close navigation' : 'Open navigation'); });
+    links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+    const observer = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }}), {threshold:.12});
+    document.querySelectorAll('.reveal').forEach((el,i) => { el.style.transitionDelay = `${Math.min((i % 4) * 70, 210)}ms`; observer.observe(el); });
+
+    const glow = document.getElementById('glow');
+    window.addEventListener('pointermove', e => { glow.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`; }, {passive:true});
+
+    const data = {
+      auto: { title:'AutoApply AI', desc:'A complete AI-powered application assistant built to help candidates move from opportunity discovery to a personalized application with less friction.', points:['Scrapes job postings using Puppeteer and Cheerio, then evaluates resume-to-role compatibility with a transparent 0–100 match score.','Uses a research agent to retrieve company news, goals and initiatives for richer application context.','Generates company-specific cold emails, cover letters and actionable resume improvement feedback through Groq’s Llama 3.'], tags:['Next.js','Express.js','MongoDB','Puppeteer','Cheerio','Groq Llama 3'] },
+      editor: { title:'Real-Time Collaborative Code Editor', desc:'A multi-user environment that makes shared coding fast, reliable and productive.', points:['Implemented real-time synchronization with Socket.io and Operational Transformation to safely resolve concurrent edits.','Integrated Monaco Editor syntax highlighting, Docker-based sandboxed execution and live collaborator presence.','Led a three-member JEC team through planning, task delegation and sprint coordination to successful delivery.'], tags:['Next.js','TypeScript','Express.js','MongoDB','JWT','Socket.io','Docker'] }
+    };
+    const modal=document.getElementById('projectModal'), title=document.getElementById('modalTitle'), desc=document.getElementById('modalDescription'), list=document.getElementById('modalList'), tags=document.getElementById('modalTags');
+    document.querySelectorAll('.details-btn').forEach(btn => btn.addEventListener('click', () => {
+      const p=data[btn.dataset.project]; title.textContent=p.title; desc.textContent=p.desc;
+      list.innerHTML=p.points.map(x=>`<li>${x}</li>`).join(''); tags.innerHTML=p.tags.map(x=>`<span class="tag">${x}</span>`).join('');
+      modal.classList.add('open'); document.body.style.overflow='hidden';
+    }));
+    function closeModal(){modal.classList.remove('open');document.body.style.overflow='';}
+    document.getElementById('closeModal').addEventListener('click',closeModal);
+    modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
+    window.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+  </script>
+</body>
+</html>

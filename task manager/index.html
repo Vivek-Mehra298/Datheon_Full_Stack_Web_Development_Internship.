@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HabitFlow - Premium Habit Tracker</title>
+    <meta name="description" content="Track your habits with style and consistency.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar / Navigation -->
+        <nav class="sidebar">
+            <div class="brand">
+                <i class="ri-focus-2-line"></i>
+                <span>HabitFlow</span>
+            </div>
+            
+            <ul class="nav-links">
+                <li class="active"><a href="#tracker"><i class="ri-dashboard-line"></i> Dashboard</a></li>
+                <li><a href="#stats"><i class="ri-pie-chart-line"></i> Statistics</a></li>
+                <li><a href="#shop"><i class="ri-store-2-line"></i> Premium Shop</a></li>
+                <li><a href="#settings"><i class="ri-settings-4-line"></i> Settings</a></li>
+            </ul>
+
+            <div class="user-profile">
+                <div class="avatar">
+                    <img src="https://ui-avatars.com/api/?name=User&background=random" alt="User">
+                </div>
+                <div class="user-info">
+                    <p class="name">User</p>
+                    <p class="status">Free Plan</p>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="greeting">
+                    <h1 id="greeting-text">Welcome back</h1>
+                    <p class="date" id="current-date">Today, 12 Feb</p>
+                </div>
+                <div class="actions">
+                    <button class="btn-icon"><i class="ri-notification-3-line"></i></button>
+                    <button class="btn-primary" id="add-habit-btn"><i class="ri-add-line"></i> New Habit</button>
+                </div>
+            </header>
+
+            <!-- Dashboard Section -->
+            <section id="tracker" class="dashboard-grid">
+                <!-- Progress Card -->
+                <div class="card progress-card">
+                    <div class="card-header">
+                        <h3>Daily Progress</h3>
+                        <span class="percentage" id="progress-percent">0%</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="daily-progress-bar" style="width: 0%"></div>
+                    </div>
+                    <p class="motivation">Keep going! You're doing great.</p>
+                </div>
+
+                <!-- Habits List -->
+                <div class="habits-section">
+                    <div class="section-header">
+                        <h2>Your Habits</h2>
+                        <div class="view-options">
+                            <button class="view-btn active"><i class="ri-list-check"></i></button>
+                            <button class="view-btn"><i class="ri-calendar-line"></i></button>
+                        </div>
+                    </div>
+                    
+                    <div class="habits-list" id="habits-container">
+                        <!-- Habits will be injected here via JS -->
+                        <div class="empty-state">
+                            <i class="ri-leaf-line"></i>
+                            <p>No habits yet. Start by adding one!</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Shop Section (Shopify Integration) -->
+            <section id="shop" class="shop-section">
+                <div class="section-header">
+                    <h2>Premium Store</h2>
+                    <p>Unlock themes, analytics, and more.</p>
+                </div>
+                
+                <div class="shop-grid">
+                    <!-- Placeholder for Shopify Buy Button -->
+                     <div class="product-card">
+                        <div class="product-image">
+                            <div class="placeholder-img">Premium Access</div>
+                        </div>
+                        <div class="product-info">
+                            <h3>HabitFlow Pro</h3>
+                            <p class="price">$5.00</p>
+                            <p class="desc">Unlock unlimited habits and detailed analytics.</p>
+                            <!-- Shopify Buy Button Snippet can go here -->
+                            <button class="btn-secondary">Buy Now (Demo)</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Add Habit Modal -->
+    <div class="modal-overlay" id="add-habit-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Create New Habit</h3>
+                <button class="close-modal" id="close-modal-btn"><i class="ri-close-line"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="habit-form">
+                    <div class="form-group">
+                        <label for="habit-name">Habit Name</label>
+                        <input type="text" id="habit-name" placeholder="e.g., Read 10 pages" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Icon</label>
+                        <div class="icon-selector">
+                            <span class="icon-option selected" data-icon="ri-book-read-line"><i class="ri-book-read-line"></i></span>
+                            <span class="icon-option" data-icon="ri-run-line"><i class="ri-run-line"></i></span>
+                            <span class="icon-option" data-icon="ri-drop-line"><i class="ri-drop-line"></i></span>
+                            <span class="icon-option" data-icon="ri-moon-line"><i class="ri-moon-line"></i></span>
+                            <span class="icon-option" data-icon="ri-code-line"><i class="ri-code-line"></i></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Color</label>
+                        <div class="color-selector">
+                            <span class="color-option selected" style="--color: #a78bfa" data-color="#a78bfa"></span>
+                            <span class="color-option" style="--color: #f472b6" data-color="#f472b6"></span>
+                            <span class="color-option" style="--color: #34d399" data-color="#34d399"></span>
+                            <span class="color-option" style="--color: #60a5fa" data-color="#60a5fa"></span>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-primary w-full">Create Habit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
